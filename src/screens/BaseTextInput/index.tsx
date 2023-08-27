@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {TextInput} from 'react-native';
-import {AMOUNT_OF_BLOCKS, LONG_TEXT} from '../../../App';
+import {LONG_TEXT} from '../../../App';
 import {useMeasure} from '../../utils/measure/useMeasure';
 let shouldMeasure = false;
 // onLayout beeing called twice
@@ -12,6 +12,7 @@ const measureRealLayout =
       return;
     }
     measure();
+    shouldMeasure = false;
   };
 const BaseTextInput: FC = () => {
   const {startRenderMeasurement, measureRenderTime} = useMeasure();
@@ -20,14 +21,11 @@ const BaseTextInput: FC = () => {
 
   return (
     <>
-      {AMOUNT_OF_BLOCKS.map((_, id) => (
-        <TextInput
-          key={id}
-          value={LONG_TEXT}
-          onLayout={measureRealLayout(measureRenderTime('baseTextInput'))}
-          multiline
-        />
-      ))}
+      <TextInput
+        value={LONG_TEXT}
+        onLayout={measureRealLayout(measureRenderTime('baseTextInput'))}
+        multiline
+      />
     </>
   );
 };

@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {AMOUNT_OF_BLOCKS, LONG_TEXT} from '../../../App';
+import {LONG_TEXT} from '../../../App';
 import {useMeasure} from '../../utils/measure/useMeasure';
 import TextInput from 'react-native/Libraries/Components/TextInput/RCTMultilineTextInputNativeComponent';
 const NativeTextInput: FC = () => {
@@ -9,11 +9,9 @@ const NativeTextInput: FC = () => {
 
   return (
     <>
-      {AMOUNT_OF_BLOCKS.map((_, id) => (
-        <TextInput key={id} onLayout={measureRenderTime('nativeTextInput')}>
-          {LONG_TEXT}
-        </TextInput>
-      ))}
+      <TextInput onLayout={measureRenderTime('nativeTextInput')}>
+        {LONG_TEXT}
+      </TextInput>
     </>
   );
 };
